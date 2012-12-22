@@ -52,7 +52,11 @@ fun! s:GetVimCmdOutput(cmd)
   let old_lang = v:lang
 
   " Set the language to English
-  exec ":lan mes en_US"
+  if has("win32") || has("win95") || has("win64") || has("win16")
+      exec ":lan mes en_US"
+  else
+      exec ":lan POSIX"
+  endif
 
   let v:errmsg = ''
   let output   = ''
